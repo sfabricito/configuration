@@ -11,6 +11,9 @@ fi
 # Software installations
 ./software/docker.sh
 ./software/virtualBox.sh
+./software/vscode.sh
+./software/rust.sh
+./software/nodejs.sh
 
 # Github ssh key generation
 ./sshKey.sh

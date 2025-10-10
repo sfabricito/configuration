@@ -1,9 +1,10 @@
 #!/bin/bash
 
 KEY_PATH="$HOME/.ssh/deploy_key"
+EMAIL="sfabricito@gmail.com"
 
 echo "=== Generating deploy key for repository ==="
-ssh-keygen -t ed25519 -f "$KEY_PATH" -N ""
+ssh-keygen -t ed25519 -c"$EMAIL" -f "$KEY_PATH" -N ""
 
 eval "$(ssh-agent -s)"
 ssh-add "$KEY_PATH"

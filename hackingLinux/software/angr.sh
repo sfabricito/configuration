@@ -1,43 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
-# install_angr.sh
-# Creates a Python virtualenv for angr under $HOME/Tools/Angr/angr,
-# installs angr and ipython, and places a small wrapper script in ~/.local/bin/angr
-# so you can run `angr` from any shell (no sudo required for the wrapper).
-
-
 VENV_DIR="$HOME/Tools/Angr/angr"
 LOCAL_BIN="$HOME/.local/bin"
 WRAPPER="$LOCAL_BIN/angr"
 
-
-echo "This script will:"
-echo " - install OS packages (python3-venv, pip, build tools) using sudo"
-echo " - create virtualenv: $VENV_DIR"
-echo " - install angr and ipython into the venv"
-echo " - create wrapper: $WRAPPER (runs IPython inside the venv)"
-
-
-echo
-read -p "Proceed? [y/N]: " -r PROCEED
-case "$PROCEED" in
-[yY][eE][sS]|[yY]) ;;
-*) echo "Aborted."; exit 1 ;;
-esac
-
-
-# Update and install dependencies (may ask for your sudo password)
-sudo apt update
 sudo apt install -y python3-venv python3-pip build-essential libssl-dev libffi-dev zlib1g-dev
 
-
-# Prepare directories
 mkdir -p "$(dirname "$VENV_DIR")"
 
 
-# Create virtualenv (idempotent)
 if [ -d "$VENV_DIR" ]; then
 echo "Virtualenv already exists at $VENV_DIR -- skipping creation"
 else
@@ -46,7 +18,6 @@ echo "Created venv at $VENV_DIR"
 fi
 
 
-# Upgrade pip and install packages inside venv
 "$VENV_DIR/bin/pip" install --upgrade pip setuptools wheel
 "$VENV_DIR/bin/pip" install angr ipython
 
@@ -72,5 +43,4 @@ echo 'Added ~/.local/bin to PATH in ~/.bashrc. Run `source ~/.bashrc` or open a 
 fi
 fi
 
-
-cat <<EOF
+echo "Installation complete. You can run angr by executing 'angr' in your terminal."

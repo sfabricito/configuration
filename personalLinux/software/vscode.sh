@@ -12,3 +12,5 @@ https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sourc
 sudo apt install -y code
 
 sudo apt autoremove -y
+
+echo "Visual Studio Code installation completed."

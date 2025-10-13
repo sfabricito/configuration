@@ -9,3 +9,5 @@ sudo systemctl enable docker --now
 # Add current user to docker group for non-sudo usage
 sudo usermod -aG docker $USER
 echo "You need to logout and login again to use Docker without sudo."
+
+echo "Docker installation completed."
